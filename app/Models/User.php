@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cpf', 'phone', 'address', 'role',
     ];
 
     /**
@@ -45,4 +46,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function loans() { return $this->hasMany(Loan::class); }
+    public function getIsAdminAttribute(): bool { return $this->role === 'admin'; }
 }
